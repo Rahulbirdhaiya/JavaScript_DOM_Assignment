@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toggle image</title>
+    
+<body>
+    
+</body>
+<script>
+    // Create new div element.
+    const newDiv = document.createElement('div');
+    newDiv.style.display = 'flex';
+    newDiv.style.flexDirection = 'column';
+    newDiv.style.alignItems = 'center';
+    // Create new h1 element.
+    const h1Element = document.createElement('h1');
+    h1Element.textContent = 'Your Image is Hidden';
+    // Insert h1 in new div.
+    newDiv.appendChild(h1Element);
+    //Create Image path
+    const imgElement = document.createElement('img');
+    imgElement.src = 'https://cdn.pwskills.com/assets/uploads/thumbnails/64af76666977cc11e7e4086e.png';
+    //setting Attributes 
+    imgElement.alt = "Hitesh Sir Banner";
+    imgElement.height = 256;
+    imgElement.width =  456;
+    imgElement.id = 'banner'
+    imgElement.className = 'banner'
+    imgElement.style.margin = '40px'
+
+    // Insert new div in body.
+    document.body.appendChild(newDiv);
+
+    // Create toggle button.
+    const btn = document.createElement('button');
+    btn.textContent = 'Toggle Image';
+    btn.style.padding = '20px';
+    btn.style.margin = '20px';
+    // Insert btn in new div.
+    newDiv.appendChild(btn);
+
+    // Create on click event on button.
+    btn.addEventListener('click', toggleImage);
+
+    // Define function
+    function toggleImage(event) {
+        // Toggle body class to switch image
+        document.body.classList.toggle('banner');
+
+        // Change h1 text content based on theme
+        if (document.body.classList.contains('banner')) {
+            newDiv.appendChild(imgElement)
+            h1Element.textContent = 'Your Image is Visible';
+        } else {
+            newDiv.removeChild(imgElement);
+            h1Element.textContent = 'Your Image is Hidden';
+        }
+    }
+</script>
+</html>

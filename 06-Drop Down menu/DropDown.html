@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropDown menu</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //create div element
+    const newDiv = document.createElement('div');
+    newDiv.style.display = 'flex';
+
+    document.body.appendChild(newDiv);
+
+    //create h2 element
+    const h3Element = document.createElement('h3');
+    h3Element.textContent = "Which is your favourite Programming Language :";
+    newDiv.appendChild(h3Element);
+
+    //create option element
+    const select = document.createElement('select');
+
+    //array for options,
+    let lang = ['Javascript', 'JAVA', 'C++', 'Python'];
+
+    //loop though the array lang
+    for (let i = 0; i < lang.length; i++) {
+        const options = document.createElement('option')
+        options.value = lang[i];
+        options.textContent = lang[i];
+        select.appendChild(options)
+    };
+    newDiv.appendChild(select);
+</script>
+</html>
+

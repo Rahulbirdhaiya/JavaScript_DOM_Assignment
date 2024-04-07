@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment & Decrement Counter</title>
+</head>
+<body>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 90vh;">
+        <h1 class="title">Counter</h1>
+
+        <div class="inner-container" style="display: flex; flex-direction: row; gap: 15px; font-size: 30px;">
+            <button id="minus" style="padding: 0px 15px; font: bold 20px black;">-</button> <span id="value">0</span> <button id="plus"style="padding: 0px 15px; font: bold 20px black;">+</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    // adding elements
+    const minusBtn = document.getElementById('minus');
+    const plusBtn = document.getElementById('plus');
+    const value = document.getElementById('value');
+
+    let count = 0;
+
+    // handle function for +
+    plusBtn.addEventListener('click', (e) => {
+        count++;
+        value.textContent = count;
+    });
+
+    // handle function for -
+    minusBtn.addEventListener('click', (e) => {
+        if (count > 0) {
+            count--;
+            value.textContent = count;
+        } else {
+            alert('counter is going beyond 0');
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Logout Authentication</title>
+</head>
+<body>
+    <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Enter your Email" required>
+        <span id="email-error" class="error"></span>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        <span id="password-error" class="error"></span>
+        <div id="buttons" style="margin: 20px;">
+            <button id="login">Login</button>
+            <button disabled="disabled" id="logout">Logout</button>
+        </div>
+        <h1 id="status"></h1>
+    </form>
+</body>
+<script>
+    const loginForm = document.getElementById('login-form');
+const inputEmail = document.getElementById('email');
+const inputPassword = document.getElementById('password');
+const loginStatus = document.getElementById('status');
+const loginButton = document.getElementById('login');
+const logoutButton = document.getElementById('logout');
+const emailError = document.getElementById('email-error');
+const passwordError = document.getElementById('password-error');
+
+loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    if (!inputEmail.checkValidity()) {
+        emailError.innerText = 'Please enter a valid email address.';
+        isValid = false;
+    } else {
+        emailError.innerText = '';
+    }
+
+    if (!inputPassword.checkValidity()) {
+        passwordError.innerText = 'Please enter a valid password.';
+        isValid = false;
+    } else {
+        passwordError.innerText = '';
+    }
+
+    if (isValid) {
+        localStorage.setItem('authenticated', true);
+        localStorage.setItem('email', inputEmail.value);
+        localStorage.setItem('password', inputPassword.value);
+        loginStatus.innerText = 'User is LoggedIn';
+        loginButton.disabled = true;
+        logoutButton.disabled = false;
+    }
+});
+
+logoutButton.addEventListener('click', function (e) {
+    localStorage.removeItem('authenticated');
+    loginStatus.innerText = 'User is LoggedOut';
+    loginButton.disabled = false;
+    logoutButton.disabled = true;
+    inputEmail.value = '';
+    inputPassword.value = '';
+    emailError.innerText = '';
+    passwordError.innerText = '';
+});
+
+if (localStorage.getItem('authenticated')) {
+    loginStatus.innerText = 'User is LoggedIn';
+    loginButton.disabled = true;
+    logoutButton.disabled = false;
+    inputEmail.value = localStorage.getItem('email');
+    inputPassword.value = localStorage.getItem('password');
+} else {
+    loginStatus.innerText = 'User is LoggedOut';
+    loginButton.disabled = false;
+    logoutButton.disabled = true;
+    inputEmail.value = '';
+    inputPassword.value = '';
+    emailError.innerText = '';
+    passwordError.innerText = '';
+}
+</script>
+</html>

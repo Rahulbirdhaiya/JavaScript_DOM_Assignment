@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+    <style>
+        body {
+            font-size: 3rem;
+            text-align: center;
+            transition: background-color ease 0.5s;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+        }
+    </style>
+</head>
+<body>
+    <time id="time"></time>
+</body>
+<script>
+    function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2,'0');
+        const formattedHours = hours % 12 || 12;
+        const minutes = String(now.getMinutes()).padStart(2,'0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const amPm = hours < 12 ? "AM" : "PM";
+        const hexCode = "#" + hours + minutes + seconds;
+
+        document.body.style.backgroundColor = hexCode;
+        document.getElementById('time').innerText = `${formattedHours}:${minutes}:${seconds} ${amPm}`;
+        document.getElementById('time').style.border = '5px solid white';
+        document.getElementById('time').style.borderRadius = '10px';
+        document.getElementById('time').style.padding = '20px';
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
+</html>

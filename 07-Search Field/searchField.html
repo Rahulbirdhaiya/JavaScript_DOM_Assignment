@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Field</title>
+</head>
+<body>
+    <div id="container">
+        <h1 class="heading">Type here to Search: <input type="search" name="search" id="search" placeholder="Search here..."></h1>
+        <ul id="list">
+            <li>Javascript</li>
+            <li>Css</li>
+            <li>HTML</li>
+            <li>Tailwind Css</li>
+            <li>Java</li>
+            <li>Python</li>
+        </ul>
+    </div>
+</body>
+<script>
+    //container selection
+    const newDiv = document.getElementById('container');
+    // newDiv.style.backgroundColor = 'green';
+    // search selection
+    const searchInput = document.getElementById('search');
+    // list selection
+    const list = document.getElementById('list');
+    
+    //handle fn on search
+    searchInput.addEventListener('input', (e) => {
+        
+        const searchList = searchInput.value.toLowerCase();
+        const listItems = list.querySelectorAll('li');
+        listItems.forEach(function (listItem) {
+            const text = listItem.textContent.toLowerCase();
+            if (text.includes(searchList)) {
+                listItem.style.display = 'block';
+            } else {
+                listItem.style.display = 'none';
+            }
+        });
+    });
+</script>
+</html>
